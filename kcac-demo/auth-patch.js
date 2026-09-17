@@ -78,7 +78,8 @@
     document.body.classList.remove('auth-page');
     previousRender();
     const user=document.querySelector('.user');
-    if(user){user.style.cursor='pointer';user.title='로그인 화면 보기';user.onclick=()=>location.hash='login';}
+    if(user){user.style.cursor='default';user.onclick=null;}
   };
+  window.addEventListener('hashchange',()=>window.render());
   window.render();
 })();
