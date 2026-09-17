@@ -14,7 +14,7 @@
     .exhibited-works .sub,.exhibited-works .more{font-size:9px}
     .exhibited-works .grid4{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 16px}
     .exhibited-works .work{min-width:0}
-    .exhibited-works .work img{width:100%;height:220px;aspect-ratio:auto!important;object-fit:contain!important;object-position:center;background:#f7f6f3}
+    .exhibited-works .work img{display:block;width:100%;height:220px;aspect-ratio:auto!important;object-fit:cover!important;object-position:center;background:transparent}
     .exhibited-works .work h4{font-size:10px;margin:7px 0 2px}
     .exhibited-works .work .name{font-size:13px}
     .exhibited-works .work .price{font-size:9px;margin-top:3px}
