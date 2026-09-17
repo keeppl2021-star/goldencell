@@ -20,14 +20,14 @@
     .artist-card p{font-size:11px;line-height:1.65;color:#777;margin:9px 0 0;max-width:92%}
     .artist-detail{padding:32px 0 80px}
     .artist-back{display:inline-block;font-size:10px;color:#777;margin-bottom:30px;border-bottom:1px solid #aaa;padding-bottom:3px}
-    .artist-head{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;border-bottom:1px solid #e8e5df;padding-bottom:42px}
-    .artist-head h1{font:64px/.95 Georgia,'Times New Roman',serif;letter-spacing:-.045em;margin:12px 0 10px}
     .artist-gallery-link{font-size:12px;text-decoration:underline;text-underline-offset:4px}
-    .artist-lead{font-size:16px;line-height:1.9;max-width:680px;margin:28px 0 0;color:#333}
-    .artist-follow{justify-self:end;align-self:start;border:0;background:#111;color:#fff;padding:13px 20px;font-size:11px;font-weight:700;cursor:pointer}
-    .artist-info-grid{display:grid;grid-template-columns:.65fr 1.35fr;gap:60px;padding:42px 0 20px}
+    .artist-follow{border:0;background:#111;color:#fff;padding:13px 20px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+    .artist-info-grid{display:grid;grid-template-columns:.65fr 1.35fr;gap:60px;padding:8px 0 20px;align-items:start}
     .artist-portrait{width:100%;aspect-ratio:4/5;object-fit:cover;background:#f3f1ed}
+    .artist-profile-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid #111}
+    .artist-profile-title h1{font:58px/.96 Georgia,'Times New Roman',serif;letter-spacing:-.045em;margin:10px 0 10px}
     .artist-section{border-top:1px solid #e8e5df;padding-top:20px;margin-bottom:34px}
+    .artist-section.about{border-top:0;padding-top:0}
     .artist-section h3{font-size:12px;margin:0 0 16px;letter-spacing:.08em;text-transform:uppercase}
     .artist-section p,.artist-section li{font-size:13px;line-height:1.85;color:#62605c}
     .artist-section ul{list-style:none;padding:0;margin:0}
@@ -35,8 +35,8 @@
     .artist-works-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}
     .artist-works-title h2{font:36px/1 Georgia,'Times New Roman',serif;margin:0;letter-spacing:-.04em}
     .artist-works-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 18px}
-    @media(max-width:980px){.artist-grid{grid-template-columns:repeat(2,1fr)}.artist-head,.artist-info-grid{grid-template-columns:1fr;gap:28px}.artist-follow{justify-self:start}.artist-head h1{font-size:52px}.artist-portrait{max-width:520px}.artist-works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:600px){.artist-grid{grid-template-columns:1fr}.artist-head h1{font-size:44px}.artist-detail{padding-top:24px}.artist-lead{font-size:14px}.artist-works-title h2{font-size:30px}.artist-works-grid{grid-template-columns:1fr}}
+    @media(max-width:980px){.artist-grid{grid-template-columns:repeat(2,1fr)}.artist-info-grid{grid-template-columns:1fr;gap:28px}.artist-profile-title h1{font-size:52px}.artist-portrait{max-width:520px}.artist-works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:600px){.artist-grid{grid-template-columns:1fr}.artist-detail{padding-top:24px}.artist-profile-top{gap:14px}.artist-profile-title h1{font-size:42px}.artist-follow{padding:11px 14px}.artist-works-title h2{font-size:30px}.artist-works-grid{grid-template-columns:1fr}}
   `;
   document.head.appendChild(style);
 
@@ -49,7 +49,7 @@
   function artistDetailPage(){
     const a=artists[0];
     const works=[data.works[0],data.works[2],data.works[1],data.works[3]];
-    return `<div class="wrap artist-detail"><a class="artist-back" href="#artists">← 작가 목록으로</a><section class="artist-head"><div><div class="kicker">ARTIST</div><h1>${a[0]}</h1><a class="artist-gallery-link" href="#gallery-detail">${a[1]}</a><p class="artist-lead">${a[2]}</p></div><button class="artist-follow">+ FOLLOW</button></section><section class="artist-info-grid"><div><img class="artist-portrait" src="${ai(a[3],1200)}" alt="${a[0]}"></div><div><div class="artist-section"><h3>About</h3><p>한소미는 도자와 유리를 주요 재료로 삼아 일상에서 마주치는 익숙한 사물의 형태와 감각을 새롭게 번역합니다. 단단함과 투명함, 무게와 빛처럼 서로 다른 물성이 만나는 순간을 통해 기억과 감정의 균형을 탐구합니다.</p></div><div class="artist-section"><h3>Career</h3><ul><li>2025 개인전 《Objects Between Us》, 갤러리 소소</li><li>2023 개인전 《쓰임의 바깥》</li><li>2022 KCAC Emerging Artist Program</li><li>2021 단체전 《Material & Memory》</li></ul></div></div></section><section class="artist-works"><div class="artist-works-title"><div><div class="kicker">SELECTED WORKS</div><h2>이 작가의 작품 <span style="font-size:16px;font-family:Inter,Pretendard,sans-serif;font-weight:400">${works.length}점</span></h2></div><a class="more" href="#discover">전체 작품 보기 →</a></div><div class="artist-works-grid">${works.map(workCard).join('')}</div></section></div>`;
+    return `<div class="wrap artist-detail"><a class="artist-back" href="#artists">← 작가 목록으로</a><section class="artist-info-grid"><div><img class="artist-portrait" src="${ai(a[3],1200)}" alt="${a[0]}"></div><div><div class="artist-profile-top"><div class="artist-profile-title"><div class="kicker">ARTIST</div><h1>${a[0]}</h1><a class="artist-gallery-link" href="#gallery-detail">${a[1]}</a></div><button class="artist-follow">+ FOLLOW</button></div><div class="artist-section about"><h3>About</h3><p>한소미는 도자와 유리를 주요 재료로 삼아 일상에서 마주치는 익숙한 사물의 형태와 감각을 새롭게 번역합니다. 단단함과 투명함, 무게와 빛처럼 서로 다른 물성이 만나는 순간을 통해 기억과 감정의 균형을 탐구합니다.</p></div><div class="artist-section"><h3>Career</h3><ul><li>2025 개인전 《Objects Between Us》, 갤러리 소소</li><li>2023 개인전 《쓰임의 바깥》</li><li>2022 KCAC Emerging Artist Program</li><li>2021 단체전 《Material & Memory》</li></ul></div></div></section><section class="artist-works"><div class="artist-works-title"><div><div class="kicker">SELECTED WORKS</div><h2>이 작가의 작품 <span style="font-size:16px;font-family:Inter,Pretendard,sans-serif;font-weight:400">${works.length}점</span></h2></div><a class="more" href="#discover">전체 작품 보기 →</a></div><div class="artist-works-grid">${works.map(workCard).join('')}</div></section></div>`;
   }
 
   const prevRender=window.render;
