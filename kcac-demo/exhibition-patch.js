@@ -8,17 +8,18 @@
   const compactStyle=document.createElement('style');
   compactStyle.textContent=`
     .exhibited-works{padding-top:0!important;padding-bottom:38px!important;margin-top:4px}
-    .exhibited-works .titleRow{padding-top:18px!important;margin-bottom:10px}
+    .exhibited-works .titleRow{padding-top:18px!important;margin-bottom:14px}
     .exhibited-works .titleRow h2{font-size:27px!important;margin:6px 0 2px!important}
     .exhibited-works .kicker{font-size:8px;letter-spacing:.22em}
     .exhibited-works .sub,.exhibited-works .more{font-size:9px}
-    .exhibited-works .grid4{gap:12px}
-    .exhibited-works .work img{aspect-ratio:auto!important;height:150px;object-fit:cover}
-    .exhibited-works .work h4{font-size:10px;margin:6px 0 2px}
+    .exhibited-works .grid4{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 16px}
+    .exhibited-works .work{min-width:0}
+    .exhibited-works .work img{width:100%;height:220px;aspect-ratio:auto!important;object-fit:contain!important;object-position:center;background:#f7f6f3}
+    .exhibited-works .work h4{font-size:10px;margin:7px 0 2px}
     .exhibited-works .work .name{font-size:13px}
     .exhibited-works .work .price{font-size:9px;margin-top:3px}
-    @media(max-width:900px){.exhibited-works .work img{height:140px}}
-    @media(max-width:600px){.exhibited-works .grid4{grid-template-columns:repeat(2,1fr)}.exhibited-works .work img{height:130px}}
+    @media(max-width:900px){.exhibited-works .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}.exhibited-works .work img{height:210px}}
+    @media(max-width:600px){.exhibited-works .grid4{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}.exhibited-works .work img{height:180px}}
   `;
   document.head.appendChild(compactStyle);
   const oldExhibitionDetail=window.exhibitionDetail || exhibitionDetail;
