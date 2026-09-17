@@ -2,7 +2,7 @@
   const style=document.createElement('style');
   style.textContent=`
   body.auth-page{background:#f7f5f1}
-  body.auth-page header,body.auth-page footer{display:none}
+  body.auth-page header,body.auth-page footer{display:none!important}
   body.auth-page #app{min-height:100vh}
   .auth-shell{min-height:100vh;display:grid;grid-template-columns:minmax(420px,1.05fr) minmax(480px,.95fr);background:#f7f5f1;color:#151515}
   .auth-visual{position:relative;min-height:100vh;background:url('https://images.unsplash.com/photo-1774021802549-d34b0a3c5750?auto=format&fit=crop&fm=jpg&q=82&w=1800') center/cover;overflow:hidden}
@@ -25,8 +25,8 @@
   .auth-input:focus{border-color:#111}
   .auth-input::placeholder{color:#b3aea7}
   .auth-help{font-size:10px;color:#8a857f;margin-top:7px;line-height:1.55}
-  .auth-actions{display:flex;align-items:center;justify-content:space-between;margin-top:4px;font-size:10px;color:#777}
-  .auth-actions a{text-decoration:underline;text-underline-offset:3px}
+  .auth-form-actions{display:flex;align-items:center;justify-content:space-between;margin-top:4px;font-size:10px;color:#777}
+  .auth-form-actions a{text-decoration:underline;text-underline-offset:3px}
   .auth-btn{width:100%;height:50px;border:0;background:#111;color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;cursor:pointer;margin-top:26px;transition:.2s}
   .auth-btn:hover{background:#2b2b2b}
   .auth-links{margin-top:22px;font-size:12px;color:#777}
@@ -59,27 +59,43 @@
   }
 
   function loginPage(){
-    return `<div class="auth-shell auth-login">${visualCopy('login')}<main class="auth-panel"><div class="auth-top"><div class="auth-logo" onclick="location.hash='home'">KCAC</div><div class="auth-back" onclick="location.hash='home'">BACK TO HOME →</div></div><section class="auth-card"><div class="auth-eyebrow">MEMBER LOGIN</div><h1>Welcome back.</h1><p class="auth-intro">나의 취향과 저장한 작품, 관심 전시를 이어서 만나보세요.</p><div class="auth-field"><label class="auth-label">이메일</label><input class="auth-input" type="email" autocomplete="email" placeholder="name@example.com"></div><div class="auth-field"><label class="auth-label">비밀번호</label><input class="auth-input" type="password" autocomplete="current-password" placeholder="비밀번호를 입력해 주세요"></div><div class="auth-actions"><label><input type="checkbox"> 로그인 상태 유지</label><a href="javascript:void(0)">비밀번호 찾기</a></div><button class="auth-btn" type="button" onclick="location.hash='home'">LOGIN</button><div class="auth-links">아직 KCAC 회원이 아니신가요?<a href="#signup">회원가입</a></div></section></main></div>`;
+    return `<div class="auth-shell auth-login">${visualCopy('login')}<main class="auth-panel"><div class="auth-top"><div class="auth-logo" onclick="location.hash='home'">KCAC</div><div class="auth-back" onclick="location.hash='home'">BACK TO HOME →</div></div><section class="auth-card"><div class="auth-eyebrow">MEMBER LOGIN</div><h1>Welcome back.</h1><p class="auth-intro">나의 취향과 저장한 작품, 관심 전시를 이어서 만나보세요.</p><div class="auth-field"><label class="auth-label">이메일</label><input class="auth-input" type="email" autocomplete="email" placeholder="name@example.com"></div><div class="auth-field"><label class="auth-label">비밀번호</label><input class="auth-input" type="password" autocomplete="current-password" placeholder="비밀번호를 입력해 주세요"></div><div class="auth-form-actions"><label><input type="checkbox"> 로그인 상태 유지</label><a href="javascript:void(0)">비밀번호 찾기</a></div><button class="auth-btn" type="button" onclick="location.hash='home'">LOGIN</button><div class="auth-links">아직 KCAC 회원이 아니신가요?<a href="#signup">회원가입</a></div></section></main></div>`;
   }
 
   function signupPage(){
     return `<div class="auth-shell auth-signup">${visualCopy('signup')}<main class="auth-panel"><div class="auth-top"><div class="auth-logo" onclick="location.hash='home'">KCAC</div><div class="auth-back" onclick="location.hash='home'">BACK TO HOME →</div></div><section class="auth-card"><div class="auth-eyebrow">JOIN KCAC</div><h1>Create your account.</h1><p class="auth-intro">취향을 발견하고, 작품을 이해하고, 나만의 첫 컬렉션을 시작하세요.</p><div class="auth-field"><label class="auth-label">이메일</label><input class="auth-input" type="email" autocomplete="email" placeholder="name@example.com"></div><div class="auth-field"><label class="auth-label">비밀번호</label><input class="auth-input" type="password" autocomplete="new-password" placeholder="비밀번호를 입력해 주세요"><div class="auth-help">8~64자, 영문·숫자·특수문자를 각각 1자 이상 포함해 주세요.</div></div><div class="auth-field"><label class="auth-label">닉네임</label><input class="auth-input" type="text" maxlength="20" placeholder="KCAC에서 사용할 이름"><div class="auth-help">2~20자로 지어 주세요.</div></div><hr class="auth-divider"><div class="terms"><label class="term-row"><input type="checkbox"><span><span class="required">(필수)</span> 이용약관에 동의합니다.</span><a class="term-view" href="javascript:void(0)">보기</a></label><label class="term-row"><input type="checkbox"><span><span class="required">(필수)</span> 개인정보 처리방침에 동의합니다.</span><a class="term-view" href="javascript:void(0)">보기</a></label><label class="term-row"><input type="checkbox"><span><span class="optional">(선택)</span> 마케팅 정보 수신에 동의합니다.</span><a class="term-view" href="javascript:void(0)">보기</a></label></div><button class="auth-btn" type="button" onclick="location.hash='login'">CREATE ACCOUNT</button><div class="auth-links">이미 계정이 있으신가요?<a href="#login">로그인</a></div></section></main></div>`;
   }
 
+  function setChrome(isAuth){
+    const header=document.querySelector('header');
+    const footer=document.querySelector('footer');
+    document.body.classList.toggle('auth-page',isAuth);
+    if(header) header.style.display=isAuth?'none':'';
+    if(footer) footer.style.display=isAuth?'none':'';
+  }
+
   const previousRender=window.render;
-  window.render=function(){
+  function authAwareRender(){
     const route=location.hash.slice(1)||'home';
-    if(route==='login'||route==='signup'){
-      document.body.classList.add('auth-page');
+    const isAuth=route==='login'||route==='signup';
+    setChrome(isAuth);
+    if(isAuth){
       document.getElementById('app').innerHTML=route==='login'?loginPage():signupPage();
       window.scrollTo(0,0);
       return;
     }
-    document.body.classList.remove('auth-page');
     previousRender();
+    setChrome(false);
     const user=document.querySelector('.user');
     if(user){user.style.cursor='default';user.onclick=null;}
-  };
-  window.addEventListener('hashchange',()=>window.render());
-  window.render();
+  }
+
+  window.render=authAwareRender;
+  window.addEventListener('hashchange',()=>{
+    authAwareRender();
+    if(!['login','signup'].includes(location.hash.slice(1))){
+      requestAnimationFrame(()=>setChrome(false));
+    }
+  });
+  authAwareRender();
 })();
