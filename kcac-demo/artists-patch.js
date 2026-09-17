@@ -34,8 +34,9 @@
     .artist-works{margin-top:26px;border-top:1px solid #111;padding-top:26px}
     .artist-works-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}
     .artist-works-title h2{font:36px/1 Georgia,'Times New Roman',serif;margin:0;letter-spacing:-.04em}
-    @media(max-width:980px){.artist-grid{grid-template-columns:repeat(2,1fr)}.artist-head,.artist-info-grid{grid-template-columns:1fr;gap:28px}.artist-follow{justify-self:start}.artist-head h1{font-size:52px}.artist-portrait{max-width:520px}}
-    @media(max-width:600px){.artist-grid{grid-template-columns:1fr}.artist-head h1{font-size:44px}.artist-detail{padding-top:24px}.artist-lead{font-size:14px}.artist-works-title h2{font-size:30px}}
+    .artist-works-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 18px}
+    @media(max-width:980px){.artist-grid{grid-template-columns:repeat(2,1fr)}.artist-head,.artist-info-grid{grid-template-columns:1fr;gap:28px}.artist-follow{justify-self:start}.artist-head h1{font-size:52px}.artist-portrait{max-width:520px}.artist-works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:600px){.artist-grid{grid-template-columns:1fr}.artist-head h1{font-size:44px}.artist-detail{padding-top:24px}.artist-lead{font-size:14px}.artist-works-title h2{font-size:30px}.artist-works-grid{grid-template-columns:1fr}}
   `;
   document.head.appendChild(style);
 
@@ -47,8 +48,8 @@
 
   function artistDetailPage(){
     const a=artists[0];
-    const works=[data.works[0],data.works[2],data.works[1]];
-    return `<div class="wrap artist-detail"><a class="artist-back" href="#artists">← 작가 목록으로</a><section class="artist-head"><div><div class="kicker">ARTIST</div><h1>${a[0]}</h1><a class="artist-gallery-link" href="#gallery-detail">${a[1]}</a><p class="artist-lead">${a[2]}</p></div><button class="artist-follow">+ FOLLOW</button></section><section class="artist-info-grid"><div><img class="artist-portrait" src="${ai(a[3],1200)}" alt="${a[0]}"></div><div><div class="artist-section"><h3>About</h3><p>한소미는 도자와 유리를 주요 재료로 삼아 일상에서 마주치는 익숙한 사물의 형태와 감각을 새롭게 번역합니다. 단단함과 투명함, 무게와 빛처럼 서로 다른 물성이 만나는 순간을 통해 기억과 감정의 균형을 탐구합니다.</p></div><div class="artist-section"><h3>Career</h3><ul><li>2025 개인전 《Objects Between Us》, 갤러리 소소</li><li>2023 개인전 《쓰임의 바깥》</li><li>2022 KCAC Emerging Artist Program</li><li>2021 단체전 《Material & Memory》</li></ul></div></div></section><section class="artist-works"><div class="artist-works-title"><div><div class="kicker">SELECTED WORKS</div><h2>이 작가의 작품 <span style="font-size:16px;font-family:Inter,Pretendard,sans-serif;font-weight:400">${works.length}점</span></h2></div><a class="more" href="#discover">전체 작품 보기 →</a></div><div class="grid3">${works.map(workCard).join('')}</div></section></div>`;
+    const works=[data.works[0],data.works[2],data.works[1],data.works[3]];
+    return `<div class="wrap artist-detail"><a class="artist-back" href="#artists">← 작가 목록으로</a><section class="artist-head"><div><div class="kicker">ARTIST</div><h1>${a[0]}</h1><a class="artist-gallery-link" href="#gallery-detail">${a[1]}</a><p class="artist-lead">${a[2]}</p></div><button class="artist-follow">+ FOLLOW</button></section><section class="artist-info-grid"><div><img class="artist-portrait" src="${ai(a[3],1200)}" alt="${a[0]}"></div><div><div class="artist-section"><h3>About</h3><p>한소미는 도자와 유리를 주요 재료로 삼아 일상에서 마주치는 익숙한 사물의 형태와 감각을 새롭게 번역합니다. 단단함과 투명함, 무게와 빛처럼 서로 다른 물성이 만나는 순간을 통해 기억과 감정의 균형을 탐구합니다.</p></div><div class="artist-section"><h3>Career</h3><ul><li>2025 개인전 《Objects Between Us》, 갤러리 소소</li><li>2023 개인전 《쓰임의 바깥》</li><li>2022 KCAC Emerging Artist Program</li><li>2021 단체전 《Material & Memory》</li></ul></div></div></section><section class="artist-works"><div class="artist-works-title"><div><div class="kicker">SELECTED WORKS</div><h2>이 작가의 작품 <span style="font-size:16px;font-family:Inter,Pretendard,sans-serif;font-weight:400">${works.length}점</span></h2></div><a class="more" href="#discover">전체 작품 보기 →</a></div><div class="artist-works-grid">${works.map(workCard).join('')}</div></section></div>`;
   }
 
   const prevRender=window.render;
