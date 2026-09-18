@@ -2,7 +2,7 @@
   const style=document.createElement('style');
   style.textContent=`
     .gallery-apply-page{padding:42px 0 90px}
-    .gallery-apply-hero{background:#1b1815;color:#fff;border-radius:14px;padding:54px 42px 48px;margin-bottom:26px}
+    .gallery-apply-hero{position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(18,16,14,.76),rgba(18,16,14,.42)),url('https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&q=88&w=1800') center 45%/cover;color:#fff;border-radius:14px;padding:54px 42px 48px;margin-bottom:26px}
     .gallery-apply-hero h1{font:46px/.98 Georgia,'Times New Roman',serif;letter-spacing:-.045em;margin:0 0 18px}
     .gallery-apply-hero p{max-width:760px;font-size:13px;line-height:1.8;color:#ddd;margin:0 0 24px}
     .gallery-apply-cta{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#111;border:0;padding:13px 18px;font-size:11px;font-weight:700;cursor:pointer}
@@ -38,7 +38,7 @@
       <section class="gallery-apply-hero">
         <div class="kicker" style="color:#c8c1b8;margin-bottom:15px">FOR GALLERIES</div>
         <h1>당신의 갤러리를,<br>더 많은 컬렉터에게</h1>
-        <p>KCAC는 신뢰할 수 있는 갤러리와 컬렉터를 연결하는 온라인 진열장입니다. 작가·작품·전시를 한곳에서 관리하고, 새로운 컬렉터를 만나보세요.</p>
+        <p>KCAC는 신뢰할 수 있는 갤러리와 컬렉터를 연결하는 온라인 진열장입니다.<br>작가·작품·전시를 한곳에서 관리하고, 새로운 컬렉터를 만나보세요.</p>
         <button class="gallery-apply-cta" type="button" onclick="location.hash='gallery-apply-form'">갤러리 입점 신청하기</button>
       </section>
 
