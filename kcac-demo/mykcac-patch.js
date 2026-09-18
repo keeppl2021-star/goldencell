@@ -36,12 +36,17 @@
     .artyear-num{font-size:22px;font-weight:800;line-height:1}
     .artyear-label{font-size:9px;margin-top:4px;color:#fff}
     .artyear-copy{font-size:10px;margin:16px 0 0;color:#ddd}
+    .collection-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 28px}
+    .collection-stat-card{border:1px solid #e6e1da;background:#faf9f7;padding:20px 20px 18px;min-height:132px;display:flex;flex-direction:column;justify-content:space-between}
+    .collection-stat-label{font-size:9px;letter-spacing:.16em;color:#827c73;text-transform:uppercase}
+    .collection-stat-value{font:32px/1 Georgia,'Times New Roman',serif;letter-spacing:-.04em;margin-top:18px}
+    .collection-stat-note{font-size:10px;color:#888;margin-top:7px;line-height:1.5}
     .collection-order{display:grid;grid-template-columns:110px 1fr auto;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid #ece8e2}
     .collection-order img{width:110px;height:110px;object-fit:cover}
     .collection-order h3{font:22px/1 Georgia,'Times New Roman',serif;margin:4px 0}
     .collection-order .price{font-size:12px}
-    @media(max-width:1000px){.mykcac-grid4{grid-template-columns:repeat(2,minmax(0,1fr))}.mykcac-row{grid-template-columns:120px 1fr 100px}.mykcac-row .hide-md{display:none}}
-    @media(max-width:680px){.mykcac-page{padding-top:30px}.mykcac-title{font-size:34px}.mykcac-tabs{gap:20px}.mykcac-grid4{grid-template-columns:1fr 1fr}.artyear-metrics{grid-template-columns:1fr 1fr}.mykcac-row{grid-template-columns:1fr;gap:7px}.collection-order{grid-template-columns:82px 1fr}.collection-order img{width:82px;height:82px}.collection-order .price{grid-column:2}.mykcac-profile{display:none}}
+    @media(max-width:1000px){.mykcac-grid4{grid-template-columns:repeat(2,minmax(0,1fr))}.mykcac-row{grid-template-columns:120px 1fr 100px}.mykcac-row .hide-md{display:none}.collection-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:680px){.mykcac-page{padding-top:30px}.mykcac-title{font-size:34px}.mykcac-tabs{gap:20px}.mykcac-grid4{grid-template-columns:1fr 1fr}.artyear-metrics{grid-template-columns:1fr 1fr}.mykcac-row{grid-template-columns:1fr;gap:7px}.collection-stats{grid-template-columns:1fr}.collection-stat-card{min-height:112px}.collection-order{grid-template-columns:82px 1fr}.collection-order img{width:82px;height:82px}.collection-order .price{grid-column:2}.mykcac-profile{display:none}}
     @media(max-width:460px){.mykcac-grid4{grid-template-columns:1fr}}
   `;
   document.head.appendChild(style);
@@ -90,7 +95,13 @@
     </div>`;
   }
   function collectionView(){
-    return `<div class="mykcac-section-head"><div><div class="kicker">MY COLLECTION</div><h2>작품 구매 내역</h2></div><span class="sub">2 works</span></div><div class="mykcac-list">
+    return `<div class="mykcac-section-head"><div><div class="kicker">MY COLLECTION</div><h2>작품 구매 내역</h2></div><span class="sub">2 works</span></div>
+    <div class="collection-stats">
+      <div class="collection-stat-card"><div class="collection-stat-label">Artworks</div><div><div class="collection-stat-value">2</div><div class="collection-stat-note">구매한 작품</div></div></div>
+      <div class="collection-stat-card"><div class="collection-stat-label">My Artists</div><div><div class="collection-stat-value">2</div><div class="collection-stat-note">구매 작품의 작가</div></div></div>
+      <div class="collection-stat-card"><div class="collection-stat-label">Average Purchase</div><div><div class="collection-stat-value">₩3,150,000</div><div class="collection-stat-note">총 구매금액 ₩6,300,000</div></div></div>
+    </div>
+    <div class="mykcac-list">
       <article class="collection-order">${safeImg(img('photo-1579783902614-a3fb3927b6a5',500))}<div><div class="kicker">2026 PURCHASE</div><h3>Light within</h3><div class="sub">최유진 · 국제갤러리</div></div><div class="price">₩3,500,000</div></article>
       <article class="collection-order">${safeImg(img('photo-1547891654-e66ed7ebb968',500))}<div><div class="kicker">2026 PURCHASE</div><h3>Moment of Bloom</h3><div class="sub">김선우 · PKM Gallery</div></div><div class="price">₩2,800,000</div></article>
     </div>`;
