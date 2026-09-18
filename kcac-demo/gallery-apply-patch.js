@@ -39,7 +39,7 @@
         <div class="kicker" style="color:#c8c1b8;margin-bottom:15px">FOR GALLERIES</div>
         <h1>당신의 갤러리를,<br>더 많은 컬렉터에게</h1>
         <p>KCAC는 신뢰할 수 있는 갤러리와 컬렉터를 연결하는 온라인 진열장입니다. 작가·작품·전시를 한곳에서 관리하고, 새로운 컬렉터를 만나보세요.</p>
-        <button class="gallery-apply-cta" type="button" onclick="document.getElementById('gallery-apply-form').scrollIntoView({behavior:'smooth'})">갤러리 입점 신청하기</button>
+        <button class="gallery-apply-cta" type="button" onclick="location.hash='gallery-apply-form'">갤러리 입점 신청하기</button>
       </section>
 
       <section class="gallery-apply-benefits">
@@ -49,30 +49,11 @@
       </section>
       <p class="gallery-apply-note">신청 후 로그인이 필요합니다 → 입점 신청 폼 작성 → 플랫폼 관리자 검토 → 승인 시 동일 계정에 갤러리 권한이 부여됩니다.</p>
 
-      <section class="gallery-form-wrap" id="gallery-apply-form">
-        <div class="gallery-form-head">
-          <div class="kicker">GALLERY APPLICATION</div>
-          <h2>갤러리 입점 신청</h2>
-          <p>제출하신 내용은 플랫폼 관리자가 확인한 뒤 승인 여부를 알려드립니다. 진행 상황은 MY KCAC에서 확인할 수 있습니다.</p>
-        </div>
-        <form class="gallery-form" onsubmit="event.preventDefault();document.querySelector('.gallery-apply-success').classList.add('show')">
-          <div class="gallery-field"><label>갤러리명 *</label><input required type="text" placeholder="갤러리명을 입력해 주세요"></div>
-          <div class="gallery-field"><label>사업자등록번호 *</label><input required type="text" placeholder="000-00-00000"><small>숫자만 입력하시면 자동으로 끊어집니다.</small></div>
-          <div class="gallery-form-grid">
-            <div class="gallery-field"><label>지역 *</label><select required><option value="">지역을 선택해 주세요</option><option>서울</option><option>경기</option><option>부산</option><option>대구</option><option>광주</option><option>대전</option><option>제주</option><option>기타</option></select></div>
-            <div class="gallery-field"><label>주소</label><input type="text" placeholder="주소를 입력해 주세요"></div>
-          </div>
-          <div class="gallery-form-grid">
-            <div class="gallery-field"><label>담당자명 *</label><input required type="text" placeholder="담당자명"></div>
-            <div class="gallery-field"><label>담당자 연락처 *</label><input required type="tel" placeholder="010-0000-0000"><small>심사 중 확인이 필요할 때 연락드립니다.</small></div>
-          </div>
-          <div class="gallery-field"><label>갤러리 소개 *</label><textarea required maxlength="1000" placeholder="어떤 작가·작품을 다루는 공간인지 알려 주세요."></textarea><small>1000자까지 입력할 수 있습니다.</small></div>
-          <div class="gallery-field gallery-file"><label>포트폴리오 *</label><input required type="file" accept=".jpg,.jpeg,.png,.webp,.pdf"><small>이미지(jpg·png·webp) 또는 PDF를 최대 5개, 각 10MB 이하로 첨부해 주세요.</small></div>
-          <button class="gallery-submit" type="submit">신청서 제출</button>
-          <div class="gallery-apply-success">입점 신청이 접수되었습니다. 관리자 검토 후 안내드리겠습니다.</div>
-        </form>
-      </section>
     </div>`;
+  }
+
+  function formPage(){
+    return `<div class="wrap gallery-apply-page"><section class="gallery-form-wrap"><a class="more" href="#gallery-apply">← 갤러리 입점 소개로</a><div class="gallery-form-head" style="margin-top:20px"><div class="kicker">GALLERY APPLICATION</div><h2>갤러리 입점 신청</h2><p>제출하신 내용은 플랫폼 관리자가 확인한 뒤 승인 여부를 알려드립니다. 진행 상황은 MY KCAC에서 확인할 수 있습니다.</p></div><form class="gallery-form" onsubmit="event.preventDefault();document.querySelector('.gallery-apply-success').classList.add('show')"><div class="gallery-field"><label>갤러리명 *</label><input required type="text" placeholder="갤러리명을 입력해 주세요"></div><div class="gallery-field"><label>사업자등록번호 *</label><input required type="text" placeholder="000-00-00000"><small>숫자만 입력하시면 자동으로 끊어집니다.</small></div><div class="gallery-form-grid"><div class="gallery-field"><label>지역 *</label><select required><option value="">지역을 선택해 주세요</option><option>서울</option><option>경기</option><option>부산</option><option>대구</option><option>광주</option><option>대전</option><option>제주</option><option>기타</option></select></div><div class="gallery-field"><label>주소</label><input type="text" placeholder="주소를 입력해 주세요"></div></div><div class="gallery-form-grid"><div class="gallery-field"><label>담당자명 *</label><input required type="text" placeholder="담당자명"></div><div class="gallery-field"><label>담당자 연락처 *</label><input required type="tel" placeholder="010-0000-0000"><small>심사 중 확인이 필요할 때 연락드립니다.</small></div></div><div class="gallery-field"><label>갤러리 소개 *</label><textarea required maxlength="1000" placeholder="어떤 작가·작품을 다루는 공간인지 알려 주세요."></textarea><small>1000자까지 입력할 수 있습니다.</small></div><div class="gallery-field gallery-file"><label>포트폴리오 *</label><input required type="file" accept=".jpg,.jpeg,.png,.webp,.pdf"><small>이미지(jpg·png·webp) 또는 PDF를 최대 5개, 각 10MB 이하로 첨부해 주세요.</small></div><button class="gallery-submit" type="submit">신청서 제출</button><div class="gallery-apply-success">입점 신청이 접수되었습니다. 관리자 검토 후 안내드리겠습니다.</div></form></section></div>`;
   }
 
   function ensureFooterGalleryLink(){
@@ -90,11 +71,11 @@
   const prevRender=window.render;
   window.render=function(){
     const route=location.hash.slice(1)||'home';
-    if(route==='gallery-apply'){
+    if(route==='gallery-apply'||route==='gallery-apply-form'){
       document.body.classList.remove('auth-page');
       const h=document.querySelector('header'),f=document.querySelector('footer');
       if(h)h.style.display=''; if(f)f.style.display='';
-      document.getElementById('app').innerHTML=page();
+      document.getElementById('app').innerHTML=route==='gallery-apply'?page():formPage();
       ensureFooterGalleryLink();
       window.scrollTo(0,0);
       return;
