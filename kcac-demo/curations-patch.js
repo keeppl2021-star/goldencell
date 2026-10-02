@@ -60,6 +60,8 @@
     </div>`;
   }
 
+  window.renderCurationsPage=page;
+
   const prevRender=window.render;
   window.render=function(){
     const route=location.hash.slice(1)||'home';
