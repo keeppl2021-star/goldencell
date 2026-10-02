@@ -13,6 +13,12 @@ function galleryDetail(){return `<div class="wrap galleryHero">${safeImg(img('ph
 function firstart(){return `<div class="wrap"><div class="subtop"><div class="kicker">FIRST ART</div><h1 class="serif">Find your first art</h1><p>예산 → 공간/용도 → 무드를 선택하면 첫 소장에 맞는 작품을 추천합니다.</p></div><div class="toolbar"><div class="filters"><span class="fchip">30만원 이하</span><span class="fchip">거실</span><span class="fchip">Warm</span></div></div><div class="grid4">${data.works.map(workCard).join('')}</div></div>`}
 
 
+const warmMoodWorks=[
+  ['김선우','흐르는 벽 #3','photo-1547891654-e66ed7ebb968','₩2,400,000'],
+  ['박서현','잔광 - 저녁','photo-1577083552431-6e5fd01988a5','₩1,800,000'],
+  ['최유진','색의 무게 - 적','photo-1579783902614-a3fb3927b6a5','₩2,900,000'],
+  ['이도윤','해변 판화 #2','photo-1561440238-08eade76a77e','₩1,500,000']
+];
 const curationData=[
   {id:'warm-mood',type:'artwork',title:'따뜻한 무드',subtitle:'생활 공간에 자연스럽게 스며드는 작품',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1618221195710-dd6b41faaea6'},
   {id:'new-voices',type:'artist',title:'New Voices',subtitle:'지금 새롭게 주목할 젊은 작가들',tag:'ARTIST CURATION',count:'4 artists',img:'photo-1494438639946-1ebd1d20bf85'},
@@ -48,7 +54,7 @@ function curationDetail(){
   const titles={artwork:'Selected Artworks',artist:'Selected Artists',gallery:'Selected Galleries',guide:'Selected Stories'};
   const artistCard=a=>`<article class="cur-detail-artist" onclick="go('artist-detail')">${safeImg(img(a[3],900))}<div class="kicker">${a[1]}</div><h3 class="serif">${a[0]}</h3><p>${a[2]}</p></article>`;
   let body='';
-  if(d.type==='artwork') body=`<div class="grid4">${data.works.map(workCard).join('')}</div>`;
+  if(d.type==='artwork'){const works=d.id==='warm-mood'?warmMoodWorks:data.works;body=`<div class="grid4">${works.map(workCard).join('')}</div>`;}
   if(d.type==='artist') body=`<div class="cur-detail-artists">${curationArtists.map(artistCard).join('')}</div>`;
   if(d.type==='gallery') body=`<div class="grid4">${data.gals.map(x=>tile(x,'gallery-detail')).join('')}</div>`;
   if(d.type==='guide') body=`<div class="grid3">${data.guides.map(x=>tile(x,'guide-detail')).join('')}</div>`;
