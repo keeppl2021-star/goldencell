@@ -44,14 +44,14 @@
   document.head.appendChild(style);
 
   function card(c){
-    return `<article class="curation-card" onclick="location.hash='discover'"><div class="image"><img src="${img(c.img,900)}" alt="${c.title}"></div><div class="meta"><span>${c.tag}</span><span>${c.count}</span></div><h3>${c.title}</h3><p>${c.desc}</p></article>`;
+    return `<article class="curation-card" onclick="location.hash='curation-detail?id=${encodeURIComponent(c.id)}'"><div class="image"><img src="${img(c.img,900)}" alt="${c.title}"></div><div class="meta"><span>${c.tag}</span><span>${c.count}</span></div><h3>${c.title}</h3><p>${c.desc}</p></article>`;
   }
 
   function page(){
     const f=curations[0];
     return `<div class="wrap curations-page">
       <div class="curations-head"><div><div class="kicker">KCAC CURATIONS</div><h1>Curations</h1></div><p class="curations-intro">취향, 공간, 예산, 그리고 지금의 감각을 기준으로 KCAC가 작품을 새롭게 묶어 소개합니다.</p></div>
-      <section class="curations-feature" onclick="location.hash='discover'">
+      <section class="curations-feature" onclick="location.hash='curation-detail?id=${encodeURIComponent(f.id)}'">
         <div class="curations-feature-image"><img src="${img(f.img,1500)}" alt="${f.title}"></div>
         <div class="curations-feature-copy"><div class="meta"><span>FEATURED CURATION</span><span>${f.count}</span></div><h2>${f.title}</h2><p>${f.desc}</p><span class="curations-arrow">→</span></div>
       </section>
