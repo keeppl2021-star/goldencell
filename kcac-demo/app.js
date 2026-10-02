@@ -20,14 +20,14 @@ const warmMoodWorks=[
   ['이도윤','해변 판화 #2','photo-1561440238-08eade76a77e','₩1,500,000']
 ];
 const curationData=[
-  {id:'warm-mood',type:'artwork',title:'따뜻한 무드',subtitle:'생활 공간에 자연스럽게 스며드는 작품',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1618221195710-dd6b41faaea6'},
-  {id:'new-voices',type:'artist',title:'New Voices',subtitle:'지금 새롭게 주목할 젊은 작가들',tag:'ARTIST CURATION',count:'4 artists',img:'photo-1494438639946-1ebd1d20bf85'},
-  {id:'galleries-now',type:'gallery',title:'Galleries to Watch',subtitle:'새로운 작가와 전시를 만드는 갤러리',tag:'GALLERY CURATION',count:'4 galleries',img:'photo-1561214115-f2f134cc4912'},
-  {id:'collector-guide',type:'guide',title:'Collector’s Reading List',subtitle:'첫 구매부터 컬렉션까지 읽어야 할 이야기',tag:'ART GUIDE CURATION',count:'3 stories',img:'photo-1600210492486-724fe5c67fb0'},
-  {id:'under-three',type:'artwork',title:'Under 3 Million',subtitle:'300만원 이하에서 발견하는 지금의 작품',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1579783902614-a3fb3927b6a5'},
-  {id:'quiet-objects',type:'artwork',title:'Quiet Objects',subtitle:'절제된 색과 물성이 만드는 조용한 장면',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1549490349-8643362247b5'},
-  {id:'living-with-art',type:'artwork',title:'Living with Art',subtitle:'거실과 일상에 자연스럽게 놓이는 작품',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1541961017774-22349e4a1262'},
-  {id:'weekend-collector',type:'guide',title:'Weekend Collector',subtitle:'주말에 천천히 읽고 시작하는 첫 컬렉션',tag:'ART GUIDE CURATION',count:'3 stories',img:'photo-1577083165633-14ebcdb0f658'}
+  {id:'warm-mood',type:'artwork',title:'따뜻한 무드',subtitle:'생활 공간에 자연스럽게 스며드는 작품',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1618221195710-dd6b41faaea6',home:true},
+  {id:'new-voices',type:'artist',title:'New Voices',subtitle:'지금 새롭게 주목할 젊은 작가들',tag:'ARTIST CURATION',count:'4 artists',img:'photo-1494438639946-1ebd1d20bf85',home:true},
+  {id:'galleries-now',type:'gallery',title:'Galleries to Watch',subtitle:'새로운 작가와 전시를 만드는 갤러리',tag:'GALLERY CURATION',count:'4 galleries',img:'photo-1561214115-f2f134cc4912',home:false},
+  {id:'collector-guide',type:'guide',title:'Collector’s Reading List',subtitle:'첫 구매부터 컬렉션까지 읽어야 할 이야기',tag:'ART GUIDE CURATION',count:'3 stories',img:'photo-1600210492486-724fe5c67fb0',home:false},
+  {id:'under-three',type:'artwork',title:'Under 3 Million',subtitle:'300만원 이하에서 발견하는 지금의 작품',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1579783902614-a3fb3927b6a5',home:true},
+  {id:'quiet-objects',type:'artwork',title:'Quiet Objects',subtitle:'절제된 색과 물성이 만드는 조용한 장면',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1549490349-8643362247b5',home:false},
+  {id:'living-with-art',type:'artwork',title:'Living with Art',subtitle:'거실과 일상에 자연스럽게 놓이는 작품',tag:'ARTWORK CURATION',count:'4 works',img:'photo-1541961017774-22349e4a1262',home:true},
+  {id:'weekend-collector',type:'guide',title:'Weekend Collector',subtitle:'주말에 천천히 읽고 시작하는 첫 컬렉션',tag:'ART GUIDE CURATION',count:'3 stories',img:'photo-1577083165633-14ebcdb0f658',home:false}
 ];
 const curationArtists=[
   ['Shin Dain','PAINTING','HERAS ART GALLERY','photo-1494438639946-1ebd1d20bf85'],
@@ -42,11 +42,39 @@ function curationId(){
   return new URLSearchParams(raw.slice(q+1)).get('id')||curationData[0].id;
 }
 function curations(){
-  const card=x=>`<article class="curation-card" onclick="location.hash='curation-detail?id=${encodeURIComponent(x.id)}'"><div class="curation-img">${safeImg(img(x.img,900))}</div><div class="curation-meta"><span>${x.tag}</span><span>${x.count}</span></div><h3 class="serif">${x.title}</h3><p>${x.subtitle}</p></article>`;
-  const f=curationData[0];
+  const featured=curationData.filter(x=>x.home);
+  const rest=curationData.filter(x=>!x.home);
+  const featureCard=(x,i)=>`<article class="cur-index-feature ${i===0?'lead':''}" onclick="location.hash='curation-detail?id=${encodeURIComponent(x.id)}'"><div class="cur-index-feature-img">${safeImg(img(x.img,1200))}</div><div class="cur-index-feature-copy"><div class="cur-index-badges"><span>HOME FEATURED</span><span>${x.tag}</span></div><h2 class="serif">${x.title}</h2><p>${x.subtitle}</p><div class="cur-index-foot"><span>${x.count}</span><span>VIEW CURATION →</span></div></div></article>`;
+  const row=(x,i)=>`<article class="cur-index-row" onclick="location.hash='curation-detail?id=${encodeURIComponent(x.id)}'"><span class="cur-index-no">${String(i+1).padStart(2,'0')}</span><div class="cur-index-thumb">${safeImg(img(x.img,700))}</div><div class="cur-index-row-copy"><div class="kicker">${x.tag}</div><h3 class="serif">${x.title}</h3><p>${x.subtitle}</p></div><div class="cur-index-row-meta"><span>${x.count}</span><b>→</b></div></article>`;
   return `<style>
-  .curations-page{padding:48px 0 92px}.curations-head{display:flex;align-items:end;justify-content:space-between;gap:28px;padding-bottom:26px;border-bottom:1px solid #111}.curations-head h1{font-size:52px;line-height:.96;letter-spacing:-.05em;margin:8px 0 0}.curations-intro{max-width:420px;font-size:11px;line-height:1.8;color:#777;margin:0 0 3px}.curations-feature{display:grid;grid-template-columns:1.35fr .65fr;gap:30px;padding:38px 0;border-bottom:1px solid #e9e5df;cursor:pointer}.curations-feature-image{height:450px;overflow:hidden;background:#f2f0ec}.curations-feature-image img{width:100%;height:450px;object-fit:cover}.curations-feature-copy{display:flex;flex-direction:column;justify-content:flex-end;padding:10px 0 4px}.curations-feature-copy .meta{display:flex;gap:12px;font-size:9px;letter-spacing:.11em;color:#8b857d;text-transform:uppercase;margin-bottom:14px}.curations-feature-copy h2{font-size:40px;line-height:.98;letter-spacing:-.045em;margin:0 0 14px}.curations-feature-copy p{font-size:12px;line-height:1.75;color:#6f6a63;margin:0 0 22px}.curations-section-head{display:flex;align-items:end;justify-content:space-between;padding:34px 0 18px}.curations-section-head h2{font-size:31px;margin:0}.curations-section-head span{font-size:10px;color:#999}.curations-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px 18px}.curation-card{cursor:pointer;min-width:0}.curation-img{aspect-ratio:1.18/1;overflow:hidden;background:#f2f0ec}.curation-img img{width:100%;height:100%;object-fit:cover}.curation-meta{display:flex;justify-content:space-between;gap:10px;margin:11px 0 7px;font-size:8px;letter-spacing:.12em;color:#938c83;text-transform:uppercase}.curation-card h3{font-size:25px;line-height:1.04;letter-spacing:-.04em;margin:0 0 8px}.curation-card p{font-size:10px;line-height:1.65;color:#777;margin:0;max-width:92%}@media(max-width:900px){.curations-head{align-items:start;flex-direction:column}.curations-feature{grid-template-columns:1fr}.curations-feature-image,.curations-feature-image img{height:360px}.curations-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.curations-page{padding-top:32px}.curations-head h1{font-size:42px}.curations-feature-image,.curations-feature-image img{height:280px}.curations-feature-copy h2{font-size:34px}.curations-grid{grid-template-columns:1fr}}
-  </style><div class="wrap curations-page"><div class="curations-head"><div><div class="kicker">KCAC CURATIONS</div><h1 class="serif">Curations</h1></div><p class="curations-intro">취향, 공간, 예산, 그리고 지금의 감각을 기준으로 KCAC가 작품·작가·갤러리·ART GUIDE를 새롭게 묶어 소개합니다.</p></div><section class="curations-feature" onclick="location.hash='curation-detail?id=${encodeURIComponent(f.id)}'"><div class="curations-feature-image">${safeImg(img(f.img,1500))}</div><div class="curations-feature-copy"><div class="meta"><span>FEATURED CURATION</span><span>${f.count}</span></div><h2 class="serif">${f.title}</h2><p>${f.subtitle}</p><span>→</span></div></section><div class="curations-section-head"><h2 class="serif">Explore Curations</h2><span>${curationData.length-1} selections</span></div><section class="curations-grid">${curationData.slice(1).map(card).join('')}</section></div>`;
+    .cur-index{padding:48px 0 96px}
+    .cur-index-head{display:grid;grid-template-columns:1fr .65fr;gap:40px;align-items:end;padding-bottom:28px;border-bottom:1px solid #111}
+    .cur-index-head h1{font-size:54px;line-height:.94;letter-spacing:-.05em;margin:8px 0 0}
+    .cur-index-head p{font-size:11px;line-height:1.8;color:#777;margin:0;max-width:430px}
+    .cur-index-label{display:flex;align-items:center;justify-content:space-between;padding:34px 0 16px}
+    .cur-index-label h2{font-size:27px;margin:0}.cur-index-label span{font-size:9px;letter-spacing:.12em;color:#999}
+    .cur-index-featured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .cur-index-feature{display:grid;grid-template-columns:.9fr 1.1fr;min-height:250px;border:1px solid #e5e1db;cursor:pointer;background:#fff}
+    .cur-index-feature.lead{grid-column:1/-1;grid-template-columns:1.15fr .85fr;min-height:330px}
+    .cur-index-feature-img{overflow:hidden;background:#f3f1ed}.cur-index-feature-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+    .cur-index-feature:hover img{transform:scale(1.015)}
+    .cur-index-feature-copy{padding:26px 24px;display:flex;flex-direction:column;justify-content:flex-end}
+    .cur-index-badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:auto}
+    .cur-index-badges span{border:1px solid #ddd;padding:6px 8px;font-size:8px;letter-spacing:.1em;color:#777}
+    .cur-index-badges span:first-child{background:#111;color:#fff;border-color:#111}
+    .cur-index-feature-copy h2{font-size:34px;line-height:1;letter-spacing:-.045em;margin:22px 0 9px}
+    .cur-index-feature.lead h2{font-size:42px}
+    .cur-index-feature-copy p{font-size:11px;line-height:1.7;color:#777;margin:0 0 18px}
+    .cur-index-foot{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #eee;padding-top:13px;font-size:9px;color:#777}
+    .cur-index-all{margin-top:48px;border-top:1px solid #111}
+    .cur-index-row{display:grid;grid-template-columns:44px 150px 1fr auto;gap:22px;align-items:center;padding:18px 0;border-bottom:1px solid #ebe7e1;cursor:pointer}
+    .cur-index-no{font:18px Georgia,serif;color:#aaa}
+    .cur-index-thumb{height:92px;overflow:hidden;background:#f3f1ed}.cur-index-thumb img{width:100%;height:100%;object-fit:cover}
+    .cur-index-row-copy h3{font-size:27px;line-height:1;margin:5px 0 6px}.cur-index-row-copy p{font-size:10px;color:#777;margin:0}
+    .cur-index-row-meta{display:flex;align-items:center;gap:30px;font-size:9px;color:#888}.cur-index-row-meta b{font-size:18px;color:#111;font-weight:400}
+    @media(max-width:900px){.cur-index-head{grid-template-columns:1fr}.cur-index-featured{grid-template-columns:1fr}.cur-index-feature,.cur-index-feature.lead{grid-column:auto;grid-template-columns:1fr;min-height:0}.cur-index-feature-img{height:260px}.cur-index-row{grid-template-columns:34px 120px 1fr}.cur-index-row-meta{display:none}}
+    @media(max-width:600px){.cur-index{padding-top:32px}.cur-index-head h1{font-size:44px}.cur-index-feature-img{height:220px}.cur-index-feature-copy{padding:20px}.cur-index-feature-copy h2,.cur-index-feature.lead h2{font-size:31px}.cur-index-row{grid-template-columns:30px 84px 1fr;gap:12px}.cur-index-thumb{height:72px}.cur-index-row-copy h3{font-size:21px}.cur-index-row-copy p{display:none}}
+  </style><div class="wrap cur-index"><div class="cur-index-head"><div><div class="kicker">KCAC CURATIONS</div><h1 class="serif">Curations</h1></div><p>작품, 작가, 갤러리, ART GUIDE를 하나의 관점으로 묶어 소개합니다. 홈에 노출된 큐레이션은 아래에서 우선적으로 만나볼 수 있습니다.</p></div><div class="cur-index-label"><h2 class="serif">Featured on Home</h2><span>${featured.length} HOME PICKS</span></div><section class="cur-index-featured">${featured.map(featureCard).join('')}</section><div class="cur-index-label" style="padding-top:50px"><h2 class="serif">All Curations</h2><span>${rest.length} MORE</span></div><section class="cur-index-all">${rest.map(row).join('')}</section></div>`;
 }
 function curationDetail(){
   const d=curationData.find(x=>x.id===curationId())||curationData[0];
