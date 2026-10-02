@@ -55,7 +55,7 @@ function curations(){
     .cur-index-label h2{font-size:27px;margin:0}.cur-index-label span{font-size:9px;letter-spacing:.12em;color:#999}
     .cur-index-featured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
     .cur-index-feature{display:grid;grid-template-columns:.9fr 1.1fr;min-height:250px;border:1px solid #e5e1db;cursor:pointer;background:#fff}
-    .cur-index-feature.lead{grid-column:1/-1;grid-template-columns:1.15fr .85fr;min-height:330px}
+    .cur-index-feature.lead{grid-column:auto;grid-template-columns:.9fr 1.1fr;min-height:250px}
     .cur-index-feature-img{overflow:hidden;background:#f3f1ed}.cur-index-feature-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
     .cur-index-feature:hover img{transform:scale(1.015)}
     .cur-index-feature-copy{padding:26px 24px;display:flex;flex-direction:column;justify-content:flex-end}
@@ -63,7 +63,7 @@ function curations(){
     .cur-index-badges span{border:1px solid #ddd;padding:6px 8px;font-size:8px;letter-spacing:.1em;color:#777}
     .cur-index-badges span:first-child{background:#111;color:#fff;border-color:#111}
     .cur-index-feature-copy h2{font-size:34px;line-height:1;letter-spacing:-.045em;margin:22px 0 9px}
-    .cur-index-feature.lead h2{font-size:42px}
+    .cur-index-feature.lead h2{font-size:34px}
     .cur-index-feature-copy p{font-size:11px;line-height:1.7;color:#777;margin:0 0 18px}
     .cur-index-foot{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #eee;padding-top:13px;font-size:9px;color:#777}
     .cur-index-all{margin-top:48px;border-top:1px solid #111}
@@ -72,7 +72,7 @@ function curations(){
     .cur-index-thumb{height:92px;overflow:hidden;background:#f3f1ed}.cur-index-thumb img{width:100%;height:100%;object-fit:cover}
     .cur-index-row-copy h3{font-size:27px;line-height:1;margin:5px 0 6px}.cur-index-row-copy p{font-size:10px;color:#777;margin:0}
     .cur-index-row-meta{display:flex;align-items:center;gap:30px;font-size:9px;color:#888}.cur-index-row-meta b{font-size:18px;color:#111;font-weight:400}
-    @media(max-width:900px){.cur-index-head{grid-template-columns:1fr}.cur-index-featured{grid-template-columns:1fr}.cur-index-feature,.cur-index-feature.lead{grid-column:auto;grid-template-columns:1fr;min-height:0}.cur-index-feature-img{height:260px}.cur-index-row{grid-template-columns:34px 120px 1fr}.cur-index-row-meta{display:none}}
+    @media(max-width:900px){.cur-index-head{grid-template-columns:1fr}.cur-index-featured{grid-template-columns:1fr}.cur-index-feature,.cur-index-feature.lead{grid-template-columns:1fr;min-height:0}.cur-index-feature-img{height:260px}.cur-index-row{grid-template-columns:34px 120px 1fr}.cur-index-row-meta{display:none}}
     @media(max-width:600px){.cur-index{padding-top:32px}.cur-index-head h1{font-size:44px}.cur-index-feature-img{height:220px}.cur-index-feature-copy{padding:20px}.cur-index-feature-copy h2,.cur-index-feature.lead h2{font-size:31px}.cur-index-row{grid-template-columns:30px 84px 1fr;gap:12px}.cur-index-thumb{height:72px}.cur-index-row-copy h3{font-size:21px}.cur-index-row-copy p{display:none}}
   </style><div class="wrap cur-index"><div class="cur-index-head"><div><div class="kicker">KCAC CURATIONS</div><h1 class="serif">Curations</h1></div><p>작품, 작가, 갤러리, ART GUIDE를 하나의 관점으로 묶어 소개합니다. 홈에 노출된 큐레이션은 아래에서 우선적으로 만나볼 수 있습니다.</p></div><div class="cur-index-label"><h2 class="serif">Featured on Home</h2><span>${featured.length} HOME PICKS</span></div><section class="cur-index-featured">${featured.map(featureCard).join('')}</section><div class="cur-index-label" style="padding-top:50px"><h2 class="serif">All Curations</h2><span>${rest.length} MORE</span></div><section class="cur-index-all">${rest.map(row).join('')}</section></div>`;
 }
